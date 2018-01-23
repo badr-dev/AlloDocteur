@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author badre
+ * @author badredine
  */
 @Entity
 @Table(name = "utilisateur")
@@ -260,6 +260,9 @@ public class Utilisateur implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        if (object == this){
+            return true;
+        }
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Utilisateur)) {
             return false;
