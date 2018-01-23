@@ -5,7 +5,7 @@
     <groupId>com.cours</groupId>
     <artifactId>maven-allo-docteur-web</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
 
     <name>maven-allo-docteur-web</name>
 
@@ -13,6 +13,12 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+    
+    <modules>
+        <module>../maven-allo-docteur-service</module>
+    </modules>
+     
     
     <dependencies>
         <dependency>
