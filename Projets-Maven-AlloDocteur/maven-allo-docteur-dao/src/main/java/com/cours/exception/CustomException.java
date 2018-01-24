@@ -11,7 +11,9 @@ package com.cours.exception;
  */
 public class CustomException extends RuntimeException {
  
-    public static int ERROR_SQL_CONNECTION = 999;
+    public static int ERROR_SQL_CONNECTION = -999;
+    
+    public static int ERROR_IDENTIFIANT_ALREADY_USE = -42;
     
     private int code;
 
