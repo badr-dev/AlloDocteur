@@ -7,7 +7,6 @@ package com.cours.entities;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,7 +59,7 @@ public class Creneau implements Serializable {
     private Integer version;
     @JoinColumn(name = "idMedecin", referencedColumnName = "idMedecin")
     @ManyToOne(optional = false)
-    private Integer idMedecin;
+    private Medecin idMedecin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCreneau")
     private List<Rendezvous> rendezvousList;
 
@@ -71,7 +70,7 @@ public class Creneau implements Serializable {
         this.idCreneau = idCreneau;
     }
     
-    public Creneau( Integer idCreneau, Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Integer idMedecin, List<Rendezvous> rendezvousList) {
+    public Creneau( Integer idCreneau, Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Medecin idMedecin, List<Rendezvous> rendezvousList) {
         this.idCreneau = idCreneau;
         this.heureDebut = heureDebut;
         this.minuteDebut = minuteDebut;
@@ -81,7 +80,7 @@ public class Creneau implements Serializable {
         this.rendezvousList = rendezvousList;
     }
     
-    public Creneau( Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Integer idMedecin, List<Rendezvous> rendezvousList) {
+    public Creneau( Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Medecin idMedecin, List<Rendezvous> rendezvousList) {
         this.heureDebut = heureDebut;
         this.minuteDebut = minuteDebut;
         this.heureFin = heureFin;
@@ -138,11 +137,11 @@ public class Creneau implements Serializable {
         this.version = version;
     }
 
-    public Integer getIdMedecin() {
+    public Medecin getIdMedecin() {
         return idMedecin;
     }
 
-    public void setIdMedecin(Integer idMedecin) {
+    public void setIdMedecin(Medecin idMedecin) {
         this.idMedecin = idMedecin;
     }
 

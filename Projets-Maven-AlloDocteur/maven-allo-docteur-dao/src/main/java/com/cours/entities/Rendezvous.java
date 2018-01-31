@@ -58,10 +58,10 @@ public class Rendezvous implements Serializable {
     private Integer version;
     @JoinColumn(name = "idCreneau", referencedColumnName = "idCreneau")
     @ManyToOne(optional = false)
-    private Integer idCreneau;
+    private Creneau idCreneau;
     @JoinColumn(name = "idPatient", referencedColumnName = "idPatient")
     @ManyToOne(optional = false)
-    private Integer idPatient;
+    private Patient idPatient;
 
     public Rendezvous() {
     }
@@ -75,7 +75,7 @@ public class Rendezvous implements Serializable {
         this.jour = jour;
     }
     
-    public Rendezvous( Integer idRendezVous, Date jour, Double prixConsultation, Boolean present, Integer idCreneau, Integer idPatient ) {
+    public Rendezvous( Integer idRendezVous, Date jour, Double prixConsultation, Boolean present, Creneau idCreneau, Patient idPatient ) {
         this.idRendezVous = idRendezVous;
         this.jour = jour;
         this.prixConsultation = prixConsultation;
@@ -84,7 +84,7 @@ public class Rendezvous implements Serializable {
         this.idPatient = idPatient;
     }
     
-    public Rendezvous( Date jour, Double prixConsultation, Boolean present, Integer idCreneau, Integer idPatient ) {
+    public Rendezvous( Date jour, Double prixConsultation, Boolean present, Creneau idCreneau, Patient idPatient ) {
         this.jour = jour;
         this.prixConsultation = prixConsultation;
         this.present = present;
@@ -132,19 +132,19 @@ public class Rendezvous implements Serializable {
         this.version = version;
     }
 
-    public Integer getIdCreneau() {
+    public Creneau getIdCreneau() {
         return idCreneau;
     }
 
-    public void setIdCreneau(Integer idCreneau) {
+    public void setIdCreneau(Creneau idCreneau) {
         this.idCreneau = idCreneau;
     }
 
-    public Integer getIdPatient() {
+    public Patient getIdPatient() {
         return idPatient;
     }
 
-    public void setIdPatient(Integer idPatient) {
+    public void setIdPatient(Patient idPatient) {
         this.idPatient = idPatient;
     }
 

@@ -6,7 +6,6 @@
 package com.cours.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -56,7 +55,7 @@ public class Medecin implements Serializable {
     private List<Creneau> creneauList;
     @JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
     @ManyToOne(optional = false)
-    private Integer idUtilisateur;
+    private Utilisateur idUtilisateur;
 
     public Medecin() {
     }
@@ -65,7 +64,7 @@ public class Medecin implements Serializable {
         this.idMedecin = idMedecin;
     }
 
-    public Medecin( Integer idMedecin, String numeroAccreditation, String numeroTelephone, Integer idUtilisateur, List<Creneau> creneauList) {
+    public Medecin( Integer idMedecin, String numeroAccreditation, String numeroTelephone, Utilisateur idUtilisateur, List<Creneau> creneauList) {
         this.idMedecin = idMedecin;
         this.numeroAccreditation = numeroAccreditation;
         this.numeroTelephone = numeroTelephone;
@@ -73,11 +72,17 @@ public class Medecin implements Serializable {
         this.creneauList = creneauList;
     }
     
-    public Medecin( String numeroAccreditation, String numeroTelephone, Integer idUtilisateur, List<Creneau> creneauList ) {
+    public Medecin( String numeroAccreditation, String numeroTelephone, Utilisateur idUtilisateur, List<Creneau> creneauList ) {
         this.numeroAccreditation = numeroAccreditation;
         this.numeroTelephone = numeroTelephone;
         this.idUtilisateur = idUtilisateur;
         this.creneauList = creneauList;
+    }
+    
+    public Medecin( String numeroAccreditation, String numeroTelephone, Utilisateur idUtilisateur) {
+        this.numeroAccreditation = numeroAccreditation;
+        this.numeroTelephone = numeroTelephone;
+        this.idUtilisateur = idUtilisateur;
     }
         
     public Integer getIdMedecin() {
@@ -121,11 +126,11 @@ public class Medecin implements Serializable {
         this.creneauList = creneauList;
     }
 
-    public Integer getIdUtilisateur() {
+    public Utilisateur getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(Integer idUtilisateur) {
+    public void setIdUtilisateur(Utilisateur idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 

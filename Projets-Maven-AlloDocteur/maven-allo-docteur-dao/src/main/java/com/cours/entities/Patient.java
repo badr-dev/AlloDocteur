@@ -53,7 +53,7 @@ public class Patient implements Serializable {
     private Integer version;
     @JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
     @ManyToOne(optional = false)
-    private Integer idUtilisateur;
+    private Utilisateur idUtilisateur;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPatient")
     private List<Rendezvous> rendezvousList;
 
@@ -64,7 +64,7 @@ public class Patient implements Serializable {
         this.idPatient = idPatient;
     }
     
-    public Patient( Integer idPatient, String numeroSecuriteSociale, String numeroTelephone, Integer idUtilisateur, List<Rendezvous> rendezvousList) {
+    public Patient( Integer idPatient, String numeroSecuriteSociale, String numeroTelephone, Utilisateur idUtilisateur, List<Rendezvous> rendezvousList) {
         this.idPatient = idPatient;
         this.numeroSecuriteSociale = numeroSecuriteSociale;
         this.numeroTelephone = numeroTelephone;
@@ -72,11 +72,17 @@ public class Patient implements Serializable {
         this.rendezvousList = rendezvousList;
     }
     
-    public Patient( Integer idUtilisateur, String numeroSecuriteSociale, String numeroTelephone, List<Rendezvous> rendezvousList) {
+    public Patient( String numeroSecuriteSociale, String numeroTelephone, Utilisateur idUtilisateur, List<Rendezvous> rendezvousList) {
         this.numeroSecuriteSociale = numeroSecuriteSociale;
         this.numeroTelephone = numeroTelephone;
         this.idUtilisateur = idUtilisateur;
         this.rendezvousList = rendezvousList;
+    }
+    
+    public Patient( String numeroSecuriteSociale, String numeroTelephone, Utilisateur idUtilisateur) {
+        this.numeroSecuriteSociale = numeroSecuriteSociale;
+        this.numeroTelephone = numeroTelephone;
+        this.idUtilisateur = idUtilisateur;
     }
 
     public Integer getIdPatient() {
@@ -111,11 +117,11 @@ public class Patient implements Serializable {
         this.version = version;
     }
 
-    public Integer getIdUtilisateur() {
+    public Utilisateur getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(Integer idUtilisateur) {
+    public void setIdUtilisateur(Utilisateur idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 
