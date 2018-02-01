@@ -57,8 +57,8 @@ public class Adresse implements Serializable {
     @Version
     private Integer version;
     @JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
-    @ManyToOne(optional = false)
-    private Utilisateur idUtilisateur;
+    //@ManyToOne(optional = false)
+    private Integer idUtilisateur;
 
     public Adresse() {
     }
@@ -67,23 +67,21 @@ public class Adresse implements Serializable {
         this.idAdresse = idAdresse;
     }
     
-    public Adresse( Integer idAdresse, String rue, String codePostal, String ville, String pays, Boolean principale, Utilisateur idUtilisateur) {
+    public Adresse( Integer idAdresse, String rue, String codePostal, String ville, String pays, Boolean principale) {
         this.idAdresse = idAdresse;
         this.rue = rue;
         this.codePostal = codePostal;
         this.ville = ville;
         this.pays = pays;
         this.principale = principale;
-        this.idUtilisateur = idUtilisateur;
     }
     
-    public Adresse( String rue, String codePostal, String ville, String pays, Boolean principale, Utilisateur idUtilisateur) {
+    public Adresse( String rue, String codePostal, String ville, String pays, Boolean principale ) {
         this.rue = rue;
         this.codePostal = codePostal;
         this.ville = ville;
         this.pays = pays;
         this.principale = principale;
-        this.idUtilisateur = idUtilisateur;
     }
 
     public Integer getIdAdresse() {
@@ -142,11 +140,11 @@ public class Adresse implements Serializable {
         this.version = version;
     }
 
-    public Utilisateur getIdUtilisateur() {
+    public Integer getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(Utilisateur idUtilisateur) {
+    public void setIdUtilisateur(Integer idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 

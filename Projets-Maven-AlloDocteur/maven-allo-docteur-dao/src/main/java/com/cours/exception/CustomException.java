@@ -15,6 +15,8 @@ public class CustomException extends RuntimeException {
     
     public static int ERROR_IDENTIFIANT_ALREADY_USE = -42;
     
+    public static int ERROR_DAO_UTILISATEURS = -43;
+    
     private int code;
 
     public CustomException(int code) {

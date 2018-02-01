@@ -9,56 +9,158 @@ import com.cours.dao.IUtilisateurDao;
 import com.cours.entities.Utilisateur;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import org.springframework.transaction.annotation.Transactional; 
+
+import com.cours.exception.CustomException;
+import org.springframework.stereotype.Repository;
+
 /**
  *
- * @author badre
+ * @author badredine
  */
+@Repository
+@Transactional
 public class UtilisateurDao implements IUtilisateurDao {
 
+    @PersistenceContext
+    private EntityManager em; 
+
+    
     @Override
     public List<Utilisateur> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "UtilisateurDao :: FindAll";
+        
+        List<Utilisateur> ListeUtilisateur = null;
+        
+        try {
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findAll", Utilisateur.class );
+            ListeUtilisateur = query.getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return ListeUtilisateur; 
     }
 
     @Override
     public Utilisateur findById(Integer idUtilisateur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        String methodName = "UtilisateurDao :: findById";
+        
+        Utilisateur utilisateur = null;
+        
+        try {
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findById", Utilisateur.class );
+            utilisateur = query.getSingleResult();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return utilisateur; 
     }
 
     @Override
     public List<Utilisateur> findByCivilite(String civilite) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "UtilisateurDao :: findByCivilite";
+        
+        List<Utilisateur> ListeUtilisateur = null;
+        
+        try {
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByCivilite", Utilisateur.class );
+            ListeUtilisateur = query.getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return ListeUtilisateur; 
     }
 
     @Override
     public List<Utilisateur> findByPrenom(String prenom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        String methodName = "UtilisateurDao :: findByPrenom";
+        
+        List<Utilisateur> ListeUtilisateur = null;
+        
+        try {
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByPrenom", Utilisateur.class );
+            ListeUtilisateur = query.getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return ListeUtilisateur;
     }
 
     @Override
     public List<Utilisateur> findByNom(String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "UtilisateurDao :: findByPrenom";
+        
+        List<Utilisateur> ListeUtilisateur = null;
+        
+        try {
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByPrenom", Utilisateur.class );
+            ListeUtilisateur = query.getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return ListeUtilisateur;
     }
 
     @Override
     public Utilisateur findByIdentifiant(String identifiant) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Utilisateur createUtilisateur(Utilisateur Utilisateur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Utilisateur updateUtilisateur(Utilisateur Utilisateur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean deleteUtilisateur(Utilisateur Utilisateur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-   
+        String methodName = "UtilisateurDao :: findByIdentifiant";
+        
+        Utilisateur utilisateur = null;
+        
+        try {
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByIdentifiant", Utilisateur.class );
+            utilisateur = query.getSingleResult();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return utilisateur;
+    }
+
+    @Override
+    public Utilisateur createUtilisateur(Utilisateur utilisateur) {
+        
+        String methodName = "UtilisateurDao :: createUtilisateur";
+        
+        try {
+            this.em.persist(utilisateur);
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return utilisateur;
+    }
+
+    @Override
+    public Utilisateur updateUtilisateur(Utilisateur utilisateur) {
+        
+        String methodName = "UtilisateurDao :: updateUtilisateur";
+        
+        try {
+            this.em.merge(utilisateur);
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return utilisateur;
+    }
+
+    @Override
+    public Boolean deleteUtilisateur(Utilisateur utilisateur) {
+        
+        String methodName = "UtilisateurDao :: deleteUtilisateur";
+        
+        boolean isOk = true; 
+        
+        try {
+            this.em.remove( this.em.merge(utilisateur) );
+        } catch (Exception e) {
+            isOk = false; 
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
+        }
+        return isOk;
+    }
 }
