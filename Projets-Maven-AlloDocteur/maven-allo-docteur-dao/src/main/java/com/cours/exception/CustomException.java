@@ -21,6 +21,9 @@ public class CustomException extends RuntimeException {
     
     public static int ERROR_DAO_MEDECINS            = -45;
     
+    
+    public static int ERROR_DAO_PATIENTS            = -47;
+    
     private int code;
 
     public CustomException(int code) {

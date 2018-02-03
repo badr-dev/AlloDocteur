@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author badre
+ * @author badredine
  */
 @Repository
 @Transactional
@@ -93,23 +93,38 @@ public class MedecinDao implements IMedecinDao {
 
     @Override
     public Medecin CreateMedecin(Medecin medecin) {
-        String methodName = "AdresseDao :: createAdresse";
+        String methodName = "MedecinDao :: CreateMedecin";
         
         try {
             this.em.persist(medecin);
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_ADRESSES );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
         }
         return medecin;
     }
 
     @Override
-    public Medecin UpdateMedecin(Medecin Medecin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Medecin UpdateMedecin(Medecin medecin) {
+        String methodName = "MedecinDao :: UpdateMedecin";
+        
+        try {
+            this.em.merge(medecin);
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
+        }
+        return medecin;
     }
 
     @Override
-    public Boolean DeleteMedecin(Medecin Medecin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Boolean DeleteMedecin(Medecin medecin) {
+
+        String methodName = "MedecinDao :: DeleteMedecin";
+        
+        try {
+            this.em.remove( this.em.merge(medecin) );
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
+        }
+        return true;
     }
 }

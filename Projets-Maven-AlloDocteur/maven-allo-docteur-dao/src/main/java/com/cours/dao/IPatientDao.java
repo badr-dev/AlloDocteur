@@ -22,8 +22,6 @@ public interface IPatientDao {
     
     public Patient findByNumeroTelephone( String NumeroTelephone );
     
-    public List<Patient> findByVersion( Integer Version );
-    
     public Patient createPatient( Patient Patient );
     
     public Patient updatePatient( Patient Patient );
