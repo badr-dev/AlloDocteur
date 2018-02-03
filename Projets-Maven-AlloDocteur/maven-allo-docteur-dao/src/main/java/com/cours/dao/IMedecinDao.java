@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IMedecinDao {
     
-    public List<Medecin> findAllMedecins();
+    public List<Medecin> findAll();
     
     public Medecin findByIdMedecin( Integer idMedecin );
     

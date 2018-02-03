@@ -53,7 +53,7 @@ public class UtilisateurDao implements IUtilisateurDao {
         
         try {
             TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findById", Utilisateur.class );
-            utilisateur = query.getSingleResult();
+            utilisateur = query.setParameter("idUtilisateur", idUtilisateur).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
         }
@@ -68,7 +68,7 @@ public class UtilisateurDao implements IUtilisateurDao {
         
         try {
             TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByCivilite", Utilisateur.class );
-            ListeUtilisateur = query.getResultList();
+            ListeUtilisateur = query.setParameter("civilite", civilite).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
         }
@@ -84,7 +84,7 @@ public class UtilisateurDao implements IUtilisateurDao {
         
         try {
             TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByPrenom", Utilisateur.class );
-            ListeUtilisateur = query.getResultList();
+            ListeUtilisateur = query.setParameter("prenom", prenom).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
         }
@@ -98,8 +98,8 @@ public class UtilisateurDao implements IUtilisateurDao {
         List<Utilisateur> ListeUtilisateur = null;
         
         try {
-            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByPrenom", Utilisateur.class );
-            ListeUtilisateur = query.getResultList();
+            TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByNom", Utilisateur.class );
+            ListeUtilisateur = query.setParameter("nom", nom).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
         }
@@ -115,7 +115,7 @@ public class UtilisateurDao implements IUtilisateurDao {
         
         try {
             TypedQuery<Utilisateur> query = this.em.createNamedQuery("Utilisateur.findByIdentifiant", Utilisateur.class );
-            utilisateur = query.getSingleResult();
+            utilisateur = query.setParameter("identifiant", identifiant).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
         }

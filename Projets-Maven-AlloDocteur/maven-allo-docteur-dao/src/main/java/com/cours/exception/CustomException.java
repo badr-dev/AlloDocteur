@@ -11,11 +11,15 @@ package com.cours.exception;
  */
 public class CustomException extends RuntimeException {
  
-    public static int ERROR_SQL_CONNECTION = -999;
+    public static int ERROR_SQL_CONNECTION          = -999;
     
     public static int ERROR_IDENTIFIANT_ALREADY_USE = -42;
     
-    public static int ERROR_DAO_UTILISATEURS = -43;
+    public static int ERROR_DAO_UTILISATEURS        = -43;
+    
+    public static int ERROR_DAO_ADRESSES            = -44;
+    
+    public static int ERROR_DAO_MEDECINS            = -45;
     
     private int code;
 
