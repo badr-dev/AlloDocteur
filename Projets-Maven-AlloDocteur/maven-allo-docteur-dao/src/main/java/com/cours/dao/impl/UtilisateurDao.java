@@ -153,14 +153,11 @@ public class UtilisateurDao implements IUtilisateurDao {
         
         String methodName = "UtilisateurDao :: deleteUtilisateur";
         
-        boolean isOk = true; 
-        
         try {
             this.em.remove( this.em.merge(utilisateur) );
         } catch (Exception e) {
-            isOk = false; 
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_UTILISATEURS );
         }
-        return isOk;
+        return true;
     }
 }

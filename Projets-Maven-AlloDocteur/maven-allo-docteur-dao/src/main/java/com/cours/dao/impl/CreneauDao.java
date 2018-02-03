@@ -7,61 +7,121 @@ package com.cours.dao.impl;
 
 import com.cours.dao.ICreneauDao;
 import com.cours.entities.Creneau;
+import com.cours.exception.CustomException;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author badredine
  */
 public class CreneauDao implements ICreneauDao {
+    
+    @PersistenceContext
+    private EntityManager em; 
 
     @Override
     public List<Creneau> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "CreneauDao :: FindAll";
+        
+        try {
+            return this.em.createNamedQuery("Utilisateur.findAll", Creneau.class ).getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
     }
 
     @Override
-    public Creneau findByIdCreneau(Integer IdCreneau) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Creneau findByIdCreneau(Integer idCreneau) {
+        String methodName = "CreaneauDao :: findById";
+        
+        try {
+            return this.em.createNamedQuery("Utilisateur.findById", Creneau.class ).setParameter("idCreneau", idCreneau).getSingleResult();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
     }
 
     @Override
     public List<Creneau> findByHeureDebut(Integer heureDebut) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "CreneauDao :: FindByHeureDebut";
+        
+        try {
+            return this.em.createNamedQuery("Utilisateur.findByHeureDebut", Creneau.class ).setParameter("heureDebut", heureDebut).getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
     }
 
     @Override
     public List<Creneau> findByMinuteDebut(Integer minuteDebut) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "CreneauDao :: FindByMinuteDebut";
+        
+        try {
+            return this.em.createNamedQuery("Utilisateur.findByMinuteDebut", Creneau.class ).setParameter("minuteDebut", minuteDebut).getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
     }
 
     @Override
     public List<Creneau> findByHeureFin(Integer heureFin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "CreneauDao :: FindByHeureFin";
+        
+        try {
+            return this.em.createNamedQuery("Utilisateur.findByHeureFin", Creneau.class ).setParameter("heureFin", heureFin).getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
     }
 
     @Override
     public List<Creneau> findByMinuteFin(Integer minuteFin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String methodName = "CreneauDao :: FindByMinuteFin";
+        
+        try {
+            return this.em.createNamedQuery("Utilisateur.findByMinuteFin", Creneau.class ).setParameter("minuteFin", minuteFin).getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
     }
 
     @Override
-    public List<Creneau> findByVersion(Integer version) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Creneau createCreneau(Creneau creneau) {
+        String methodName = "CreneauDao :: createCreneau";
+        
+        try {
+            this.em.persist(creneau);
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
+        return creneau;
+        
     }
 
     @Override
-    public Creneau createCreneau(Creneau Creneau) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Creneau updateCreneau(Creneau creneau) {
+        
+        String methodName = "CreneauDao :: updateCreneau";
+        
+        try {
+            this.em.merge(creneau);
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
+        return creneau;
     }
 
     @Override
-    public Creneau updateCreneau(Creneau Creneau) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean deleteCreneau(Creneau Creneau) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Boolean deleteCreneau(Creneau creneau) {
+        String methodName = "CreneauxDao :: deleteCreneaux";
+        
+        try {
+            this.em.remove( this.em.merge(creneau) );
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
+        return true;
     }
 }

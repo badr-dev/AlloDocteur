@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Creneau.findByMinuteDebut", query = "SELECT c FROM Creneau c WHERE c.minuteDebut = :minuteDebut"),
     @NamedQuery(name = "Creneau.findByHeureFin", query = "SELECT c FROM Creneau c WHERE c.heureFin = :heureFin"),
     @NamedQuery(name = "Creneau.findByMinuteFin", query = "SELECT c FROM Creneau c WHERE c.minuteFin = :minuteFin"),
-    @NamedQuery(name = "Creneau.findByVersion", query = "SELECT c FROM Creneau c WHERE c.version = :version")})
+})
 public class Creneau implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

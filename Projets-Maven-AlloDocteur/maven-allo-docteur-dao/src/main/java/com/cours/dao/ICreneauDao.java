@@ -16,7 +16,7 @@ public interface ICreneauDao {
     
     public List<Creneau> findAll();
     
-    public Creneau findByIdCreneau( Integer IdCreneau );
+    public Creneau findByIdCreneau( Integer idCreneau );
     
     public List<Creneau> findByHeureDebut( Integer heureDebut );
     
@@ -26,11 +26,9 @@ public interface ICreneauDao {
     
     public List<Creneau> findByMinuteFin( Integer minuteFin );
     
-    public List<Creneau> findByVersion( Integer version);
+    public Creneau createCreneau( Creneau creneau );
     
-    public Creneau createCreneau( Creneau Creneau );
+    public Creneau updateCreneau( Creneau creneau );
     
-    public Creneau updateCreneau( Creneau Creneau );
-    
-    public Boolean deleteCreneau( Creneau Creneau );
+    public Boolean deleteCreneau( Creneau creneau );
  }

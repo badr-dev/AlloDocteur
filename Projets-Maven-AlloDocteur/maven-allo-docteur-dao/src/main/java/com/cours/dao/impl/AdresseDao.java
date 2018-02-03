@@ -175,14 +175,11 @@ public class AdresseDao implements IAdresseDao {
     public Boolean deleteAdresse(Adresse adresse) {
         String methodName = "AdresseDao :: deleteAdresse";
         
-        boolean isOk = true;
-        
         try {
             this.em.remove( this.em.merge(adresse) );
         } catch (Exception e) {
-            isOk = false; 
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_ADRESSES );
         }
-        return isOk;
+        return true;
     }
 }
