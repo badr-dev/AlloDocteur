@@ -69,7 +69,7 @@ public class UtilisateurService implements IUtilisateurService{
     @Override
     @Transactional
     public Utilisateur updateUtilisateur(Utilisateur Utilisateur) {
-        return this.utilisateurDao.createUtilisateur(Utilisateur);
+        return this.utilisateurDao.updateUtilisateur(Utilisateur);
     }
 
     @Override
