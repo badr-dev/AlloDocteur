@@ -133,21 +133,6 @@ public class AdresseDao implements IAdresseDao {
     }
 
     @Override
-    public List<Adresse> findByVersion(Integer Version) {
-        String methodName = "AdresseDao :: findByVersion";
-        
-        List<Adresse> adresse = null;
-        
-        try {
-            TypedQuery<Adresse> query = this.em.createNamedQuery("Adresse.findByVersion", Adresse.class );
-            adresse = query.setParameter("version", Version).getResultList();
-        } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_ADRESSES );
-        }
-        return adresse;
-    }
-
-    @Override
     public Adresse createAdresse(Adresse adresse) {
         String methodName = "AdresseDao :: createAdresse";
         

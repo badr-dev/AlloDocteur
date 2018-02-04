@@ -17,20 +17,18 @@ public interface IRendezVousDao {
     
     public List<Rendezvous> findAll();
     
-    public Rendezvous findByIdRendezVous( Integer IdRendezvous );
+    public Rendezvous findByIdRendezVous( Integer idRendezvous );
     
-    public List<Rendezvous> findByJour( Date Jour );
+    public List<Rendezvous> findByJour( Date jour );
     
-    public List<Rendezvous> findByPrixConsultation( Double PrixConsultation );
+    public List<Rendezvous> findByPrixConsultation( Double prixConsultation );
     
-    public List<Rendezvous> findByPresent( Boolean Present );
+    public List<Rendezvous> findByPresent( Boolean present );
     
-    public List<Rendezvous> findByVersion( Integer Version );
+    public Rendezvous createRendezvous( Rendezvous rendezvous );
     
-    public Rendezvous createRendezvous( Rendezvous Rendezvous );
+    public Rendezvous updateRendezvous( Rendezvous rendezvous );
     
-    public Rendezvous updateRendezvous( Rendezvous Rendezvous );
-    
-    public Boolean deleteRendezvous( Rendezvous Rendezvous );
+    public Boolean deleteRendezvous( Rendezvous rendezvous );
     
 }

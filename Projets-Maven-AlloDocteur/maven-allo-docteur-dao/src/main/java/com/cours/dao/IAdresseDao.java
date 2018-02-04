@@ -28,8 +28,6 @@ public interface IAdresseDao {
     
     public List<Adresse> findByPrincipale( Boolean Principale );
     
-    public List<Adresse> findByVersion( Integer Version );
-    
     public Adresse createAdresse( Adresse Adresse );
     
     public Adresse updateAdresse( Adresse Adresse );

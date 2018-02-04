@@ -97,7 +97,6 @@ public class CreneauDao implements ICreneauDao {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
         return creneau;
-        
     }
 
     @Override
