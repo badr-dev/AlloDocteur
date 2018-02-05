@@ -35,7 +35,7 @@ public class RendezVousDao implements IRendezVousDao {
         List<Rendezvous> ListeRendezvous = null;
         
         try {
-            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Patient.findAll", Rendezvous.class );
+            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Rendezvous.findAll", Rendezvous.class );
             ListeRendezvous = query.getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
@@ -51,7 +51,7 @@ public class RendezVousDao implements IRendezVousDao {
         Rendezvous rendezvous = null;
         
         try {
-            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Patient.findByIdRendezVous", Rendezvous.class );
+            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Rendezvous.findByIdRendezVous", Rendezvous.class );
             rendezvous = query.setParameter("idRendezvous", idRendezvous).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
@@ -67,7 +67,7 @@ public class RendezVousDao implements IRendezVousDao {
         List<Rendezvous> ListeRendezvous = null;
         
         try {
-            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Patient.findByJour", Rendezvous.class );
+            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Rendezvous.findByJour", Rendezvous.class );
             ListeRendezvous = query.setParameter("jour", jour).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
@@ -83,7 +83,7 @@ public class RendezVousDao implements IRendezVousDao {
         List<Rendezvous> ListeRendezvous = null;
         
         try {
-            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Patient.findByPrixConsultation", Rendezvous.class );
+            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Rendezvous.findByPrixConsultation", Rendezvous.class );
             ListeRendezvous = query.setParameter("prixConsultation", prixConsultation).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
@@ -99,7 +99,7 @@ public class RendezVousDao implements IRendezVousDao {
         List<Rendezvous> ListeRendezvous = null;
         
         try {
-            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Patient.findByPresent", Rendezvous.class );
+            TypedQuery<Rendezvous> query = this.em.createNamedQuery("Rendezvous.findByPresent", Rendezvous.class );
             ListeRendezvous = query.setParameter("present", present).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
@@ -115,7 +115,7 @@ public class RendezVousDao implements IRendezVousDao {
         try {
             this.em.persist(rendezvous);
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
         }
         return rendezvous;
     }
@@ -128,7 +128,7 @@ public class RendezVousDao implements IRendezVousDao {
         try {
             this.em.merge(rendezvous);
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
         }
         return rendezvous;
     }
@@ -141,7 +141,7 @@ public class RendezVousDao implements IRendezVousDao {
         try {
             this.em.remove(this.em.merge(rendezvous));
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_RENDEZVOUS );
         }
         return true;
     }

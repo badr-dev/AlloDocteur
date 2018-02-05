@@ -34,10 +34,10 @@ public class CreneauDao implements ICreneauDao {
 
     @Override
     public Creneau findByIdCreneau(Integer idCreneau) {
-        String methodName = "CreaneauDao :: findById";
+        String methodName = "CreneauDao :: findById";
         
         try {
-            return this.em.createNamedQuery("Utilisateur.findById", Creneau.class ).setParameter("idCreneau", idCreneau).getSingleResult();
+            return this.em.createNamedQuery("Creneau.findById", Creneau.class ).setParameter("idCreneau", idCreneau).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
@@ -48,7 +48,7 @@ public class CreneauDao implements ICreneauDao {
         String methodName = "CreneauDao :: FindByHeureDebut";
         
         try {
-            return this.em.createNamedQuery("Utilisateur.findByHeureDebut", Creneau.class ).setParameter("heureDebut", heureDebut).getResultList();
+            return this.em.createNamedQuery("Creneau.findByHeureDebut", Creneau.class ).setParameter("heureDebut", heureDebut).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
@@ -59,7 +59,7 @@ public class CreneauDao implements ICreneauDao {
         String methodName = "CreneauDao :: FindByMinuteDebut";
         
         try {
-            return this.em.createNamedQuery("Utilisateur.findByMinuteDebut", Creneau.class ).setParameter("minuteDebut", minuteDebut).getResultList();
+            return this.em.createNamedQuery("Creneau.findByMinuteDebut", Creneau.class ).setParameter("minuteDebut", minuteDebut).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
@@ -70,7 +70,7 @@ public class CreneauDao implements ICreneauDao {
         String methodName = "CreneauDao :: FindByHeureFin";
         
         try {
-            return this.em.createNamedQuery("Utilisateur.findByHeureFin", Creneau.class ).setParameter("heureFin", heureFin).getResultList();
+            return this.em.createNamedQuery("Creneau.findByHeureFin", Creneau.class ).setParameter("heureFin", heureFin).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
@@ -81,7 +81,7 @@ public class CreneauDao implements ICreneauDao {
         String methodName = "CreneauDao :: FindByMinuteFin";
         
         try {
-            return this.em.createNamedQuery("Utilisateur.findByMinuteFin", Creneau.class ).setParameter("minuteFin", minuteFin).getResultList();
+            return this.em.createNamedQuery("Creneau.findByMinuteFin", Creneau.class ).setParameter("minuteFin", minuteFin).getResultList();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
