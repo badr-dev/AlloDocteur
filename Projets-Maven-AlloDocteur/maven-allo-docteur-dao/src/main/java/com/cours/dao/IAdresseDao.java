@@ -14,23 +14,23 @@ import java.util.List;
  */
 public interface IAdresseDao {
     
-    public List<Adresse> findAll();
+        public List<Adresse> findAll();
     
-    public Adresse findByIdAdresse( Integer IdAdresse );
+    public Adresse findByIdAdresse( Integer idAdresse );
     
-    public Adresse findByRue( String Rue );
+    public Adresse findByRue( String rue );
     
-    public List<Adresse> findByCodePostal( String CodePostal );
+    public List<Adresse> findByCodePostal( String codePostal );
     
-    public List<Adresse> findByVille( String Ville );
+    public List<Adresse> findByVille( String ville );
     
-    public List<Adresse> findByPays( String Pays );
+    public List<Adresse> findByPays( String pays );
     
-    public List<Adresse> findByPrincipale( Boolean Principale );
+    public List<Adresse> findByPrincipale( Boolean principale );
     
-    public Adresse createAdresse( Adresse Adresse );
+    public Adresse createAdresse( Adresse adresse );
     
-    public Adresse updateAdresse( Adresse Adresse );
+    public Adresse updateAdresse( Adresse adresse );
     
-    public Boolean deleteAdresse( Adresse Adresse );
+    public Boolean deleteAdresse( Adresse adresse );
 }
