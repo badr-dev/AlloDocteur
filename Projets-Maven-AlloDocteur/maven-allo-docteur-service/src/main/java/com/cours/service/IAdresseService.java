@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cours.dao;
+package com.cours.service;
 
 import com.cours.entities.Adresse;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
  *
  * @author badredine
  */
-public interface IAdresseDao {
+public interface IAdresseService {
     
-        public List<Adresse> findAll();
+    public List<Adresse> findAll();
     
     public Adresse findByIdAdresse( Integer idAdresse );
     
