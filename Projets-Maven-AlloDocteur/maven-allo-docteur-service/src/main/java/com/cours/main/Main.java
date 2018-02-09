@@ -13,12 +13,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
- * @author badredine
+ * @author badre
  */
 public class Main {
     
-     public static void main(String[] args) {
-        
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config-dao.xml");
     
         IUtilisateurDao utilisateurDao = (IUtilisateurDao) ctx.getBean("utilisateurDao");
@@ -30,7 +33,5 @@ public class Main {
         System.out.println("Liste utilisateur :: " + listeUser);
         
         String toto = "toto";
-        
     }
-    
 }
