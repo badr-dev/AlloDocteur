@@ -5,7 +5,10 @@
  */
 package com.cours.servlet;
 
+import com.cours.entities.Utilisateur;
+import com.cours.service.IServiceFacade;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,14 +26,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class LoginServlet extends HttpServlet {
 
     private static final Log log = LogFactory.getLog(LoginServlet.class);
-    // private IServiceFacade serviceFacade = null;
+    private IServiceFacade service = null;
 
-    @Override
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-        //serviceFacade = (IServiceFacade) context.getBean("serviceFacade");
-        //log.debug("allAdresses: " + serviceFacade.getAdresseDao().findAllAdresses());
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        service = (IServiceFacade) context.getBean("serviceFacade");
+        log.debug("allAdresses: " + service.getAdresseDao().findAll());
         this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
     }
 
@@ -38,6 +41,18 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
+        
+        String login    = request.getParameter("login").trim();
+        String password = request.getParameter("password").trim();
+        	
+        List<Utilisateur> utilisateur  = service.getUtilisateurDao().findAll();
+        
+        String reponse = "Hello " + login;
+
+        response.setContentType("application/json");
+        response.getWriter().write(reponse);
+        
     }
 
 }

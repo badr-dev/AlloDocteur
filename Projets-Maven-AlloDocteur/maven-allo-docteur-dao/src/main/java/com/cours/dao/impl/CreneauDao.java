@@ -11,11 +11,15 @@ import com.cours.exception.CustomException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author badredine
  */
+@Repository
+@Transactional
 public class CreneauDao implements ICreneauDao {
     
     @PersistenceContext
