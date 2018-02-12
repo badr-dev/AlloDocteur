@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author badredine
  */
-@Repository
+@Repository("patientDao")
 @Transactional
 public class PatientDao implements IPatientDao {
 
@@ -52,6 +52,22 @@ public class PatientDao implements IPatientDao {
         try {
             TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByIdMedecin", Patient.class );
             patient =  query.setParameter("idPatient", idPatient).getSingleResult();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+        }
+        return patient;
+    }
+    
+    @Override
+    public Patient findByIdUtilisateur(Integer idUtilisateur) {
+
+        String methodName = "PatientDao :: findByidUtilisateur";
+        
+        Patient patient = null;
+        
+        try {
+            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByidUtilisateur", Patient.class );
+            patient =  query.setParameter("idPatient", idUtilisateur).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
         }

@@ -20,14 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author badredine
  */
-@Repository
+@Repository("medecinDao")
 @Transactional
 public class MedecinDao implements IMedecinDao {
 
     @PersistenceContext
     private EntityManager em;
     
-    @Override
+    @Override 
     public List<Medecin> findAll() {
         
         String methodName = "MedecinDao :: findAll";
@@ -53,6 +53,22 @@ public class MedecinDao implements IMedecinDao {
         try {
             TypedQuery<Medecin> query = this.em.createNamedQuery("Medecin.findByIdMedecin", Medecin.class );
             medecin = query.setParameter("idMedecin", idMedecin).getSingleResult();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
+        }
+        return medecin;
+    }
+    
+    @Override
+    public Medecin findByIdUtilisateur(Integer IdUtilisateur) {
+
+        String methodName = "MedecinDao :: findByIdUtilisateur";
+        
+        Medecin medecin = null;
+        
+        try {
+            TypedQuery<Medecin> query = this.em.createNamedQuery("Medecin.findByIdUtilisateur", Medecin.class );
+            medecin = query.setParameter("IdUtilisateur", IdUtilisateur).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
         }

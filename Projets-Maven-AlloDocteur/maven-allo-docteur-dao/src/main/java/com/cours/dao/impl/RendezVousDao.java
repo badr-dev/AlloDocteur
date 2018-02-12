@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author badre
  */
-@Repository
+@Repository("rendezVousDao")
 @Transactional
 public class RendezVousDao implements IRendezVousDao {
 

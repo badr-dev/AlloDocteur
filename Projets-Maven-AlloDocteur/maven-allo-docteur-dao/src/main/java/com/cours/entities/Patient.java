@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Patient.findAll", query = "SELECT p FROM Patient p"),
     @NamedQuery(name = "Patient.findByIdPatient", query = "SELECT p FROM Patient p WHERE p.idPatient = :idPatient"),
+    @NamedQuery(name = "Patient.findByIdUtilisateur", query = "SELECT p FROM Patient p WHERE p.idUtilisateur = :idUtilisateur"),
     @NamedQuery(name = "Patient.findByNumeroSecuriteSociale", query = "SELECT p FROM Patient p WHERE p.numeroSecuriteSociale = :numeroSecuriteSociale"),
     @NamedQuery(name = "Patient.findByNumeroTelephone", query = "SELECT p FROM Patient p WHERE p.numeroTelephone = :numeroTelephone"),
     @NamedQuery(name = "Patient.findByVersion", query = "SELECT p FROM Patient p WHERE p.version = :version")})

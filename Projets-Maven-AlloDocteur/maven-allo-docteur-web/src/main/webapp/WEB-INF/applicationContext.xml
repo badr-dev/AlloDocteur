@@ -13,8 +13,11 @@
      
     <context:component-scan base-package="com.cours.service,com.cours.dao" />
      
-    <bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
         <property name="persistenceXmlLocation" value="classpath*:META-INF/spring-persistence.xml"/>
+        <property name="persistenceUnitName" value="base_allo_docteur" />
+
         <property name="dataSource" ref="dataSource" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -30,7 +33,7 @@
     <!-- le gestionnaire de transactions -->
     <tx:annotation-driven transaction-manager="txManager" />
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="emFactory" />
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
     <!-- traduction des exceptions -->
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />

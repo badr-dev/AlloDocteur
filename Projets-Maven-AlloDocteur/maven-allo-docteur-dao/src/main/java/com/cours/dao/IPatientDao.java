@@ -18,6 +18,8 @@ public interface IPatientDao {
     
     public Patient findByIdPatient( Integer IdPatient );
     
+    public Patient findByIdUtilisateur( Integer IdUtilisateur );
+    
     public Patient findByNumeroSecuriteSociale( String NumeroSecuriteSociale );
     
     public Patient findByNumeroTelephone( String NumeroTelephone );

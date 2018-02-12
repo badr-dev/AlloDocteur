@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  *
  * @author badredine
  */
-@Service
+@Service("serviceFacade")
 public class ServiceFacade implements IServiceFacade {
 
     private static final Log log = LogFactory.getLog(ServiceFacade.class);

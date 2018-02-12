@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IAdresseDao {
     
-        public List<Adresse> findAll();
+    public List<Adresse> findAll();
     
     public Adresse findByIdAdresse( Integer idAdresse );
     

@@ -11,6 +11,9 @@
         <link rel="stylesheet" href="/maven-allo-docteur-web/styles/bootstrap.css"> 
         <link rel="stylesheet" href="/maven-allo-docteur-web/styles/main.css">
         <link rel="stylesheet" href="/maven-allo-docteur-web/styles/rwd.css">
+        
+        <link rel="stylesheet" href="/maven-allo-docteur-web/styles/sweetalert2.min.css">
+        
     </head>
     <body class="clearfix">
         <!--[if IE]>
@@ -44,12 +47,12 @@
                         <div class="content">
                             <div class="righ-block">
                                 <h3>SE CONNECTER</h3>
-                                <form class="login-form">
-                                    <input type="text" placeholder="LOGIN">
-                                    <input type="password" placeholder="PASSWORD">
-                                    <button type="submit">se connecter</button>
-                                    <div class="clearfix"> </div>
-                                    <a href="#" class="forgot-pass-link clearfix">Mot de passe oublié?</a>
+                                <form action="LoginServlet" id="form_login" class="login-form">
+                                  <input type="text" name="login" placeholder="LOGIN">
+                                  <input type="password" name="password" placeholder="PASSWORD">
+                                  <button id="btn_send_form_login" type="submit">se connecter</button>
+                                  <div class="clearfix"> </div>
+                                  <a href="#" class="forgot-pass-link clearfix">Mot de passe oublié?</a>
                                 </form>
                             </div>
                         </div>
@@ -59,6 +62,14 @@
         </div>
         <script src="/maven-allo-docteur-web/scripts/jquery.js"></script>
         <script src="/maven-allo-docteur-web/scripts/jquery.slicknav.js"></script>
+        
+        <script src="/maven-allo-docteur-web/scripts/jquery_validation/jquery.validate.min.js"></script>
+        
+        <script src="/maven-allo-docteur-web/scripts/sweetalert2.min.js"></script>
+        
         <script src="/maven-allo-docteur-web/scripts/main.js"></script>
+                
+        <script src="/maven-allo-docteur-web/scripts/resource/login.js"></script>
+        
     </body>
 </html>

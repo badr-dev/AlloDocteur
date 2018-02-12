@@ -167,11 +167,22 @@ public class Adresse implements Serializable {
         }
         return true;
     }
-
-    @Override
+    
+    @Override 
     public String toString() {
-        return String.format("[idAdresse=%s, rue=%s, codePostal=%s, ville=%s, codePostal=%s, ville=%s, pays=%s, principale=%s, idUtilisateur=%s]",
-            idAdresse, rue, codePostal, ville, pays, principale, codePostal, idUtilisateur);
+        
+        StringBuffer adresse = new StringBuffer(" Adresse : { ");
+        
+        adresse.append(" idAdresse : ").append(this.getIdAdresse())
+                .append(", rue : ").append(this.getRue())
+                .append(", codePostal : ").append(this.getCodePostal())
+                .append(", ville : ").append(this.getVille())
+                .append(", pays : ").append(this.getPays())
+                .append(", version : ").append(this.getVersion())
+                .append(", idUtilisateur : ").append(this.getIdUtilisateur());      
+        adresse.append(" } ");
+
+        return adresse.toString();
     }
     
 }

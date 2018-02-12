@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author badredine
  */
-@Repository
+@Repository("adresseDao")
 @Transactional
 public class AdresseDao implements IAdresseDao {
 

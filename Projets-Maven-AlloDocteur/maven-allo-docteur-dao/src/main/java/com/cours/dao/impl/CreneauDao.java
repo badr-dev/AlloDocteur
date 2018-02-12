@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author badredine
  */
-@Repository
+@Repository("creneauDao")
 @Transactional
 public class CreneauDao implements ICreneauDao {
     

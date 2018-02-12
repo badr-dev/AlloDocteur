@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author badredine
  */
-@Repository
+@Repository("utilisateurDao")
 @Transactional
 public class UtilisateurDao implements IUtilisateurDao {
 
