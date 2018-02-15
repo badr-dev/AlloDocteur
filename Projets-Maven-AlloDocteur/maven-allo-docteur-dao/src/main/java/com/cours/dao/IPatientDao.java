@@ -16,9 +16,9 @@ public interface IPatientDao {
     
     public List<Patient> findAll();
     
-    public Patient findByIdPatient( Integer IdPatient );
+    public Patient findByIdPatient( Integer idPatient );
     
-    public Patient findByIdUtilisateur( Integer IdUtilisateur );
+    public Patient findByIdUtilisateur( Integer idUtilisateur );
     
     public Patient findByNumeroSecuriteSociale( String NumeroSecuriteSociale );
     

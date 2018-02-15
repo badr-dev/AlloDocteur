@@ -53,8 +53,8 @@ public class Patient implements Serializable {
     @Version
     private Integer version;
     @JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
-    @ManyToOne(optional = false)
-    private Utilisateur idUtilisateur;
+    //@ManyToOne(optional = false)
+    private Integer idUtilisateur;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPatient")
     private List<Rendezvous> rendezvousList;
 
@@ -65,7 +65,7 @@ public class Patient implements Serializable {
         this.idPatient = idPatient;
     }
     
-    public Patient( Integer idPatient, String numeroSecuriteSociale, String numeroTelephone, Utilisateur idUtilisateur, List<Rendezvous> rendezvousList) {
+    public Patient( Integer idPatient, String numeroSecuriteSociale, String numeroTelephone, Integer idUtilisateur, List<Rendezvous> rendezvousList) {
         this.idPatient = idPatient;
         this.numeroSecuriteSociale = numeroSecuriteSociale;
         this.numeroTelephone = numeroTelephone;
@@ -73,14 +73,14 @@ public class Patient implements Serializable {
         this.rendezvousList = rendezvousList;
     }
     
-    public Patient( String numeroSecuriteSociale, String numeroTelephone, Utilisateur idUtilisateur, List<Rendezvous> rendezvousList) {
+    public Patient( String numeroSecuriteSociale, String numeroTelephone, Integer idUtilisateur, List<Rendezvous> rendezvousList) {
         this.numeroSecuriteSociale = numeroSecuriteSociale;
         this.numeroTelephone = numeroTelephone;
         this.idUtilisateur = idUtilisateur;
         this.rendezvousList = rendezvousList;
     }
     
-    public Patient( String numeroSecuriteSociale, String numeroTelephone, Utilisateur idUtilisateur) {
+    public Patient( String numeroSecuriteSociale, String numeroTelephone, Integer idUtilisateur) {
         this.numeroSecuriteSociale = numeroSecuriteSociale;
         this.numeroTelephone = numeroTelephone;
         this.idUtilisateur = idUtilisateur;
@@ -118,11 +118,11 @@ public class Patient implements Serializable {
         this.version = version;
     }
 
-    public Utilisateur getIdUtilisateur() {
+    public Integer getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(Utilisateur idUtilisateur) {
+    public void setIdUtilisateur(Integer idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 

@@ -11,4 +11,12 @@ package com.cours.utils;
  */
 public class Constants {
     
+    public static final String BASE_URL = "maven-allo-docteur-web/";
+    
+    public static final String SESSION_UTILISATEUR     = "utilisateur";
+    
+    public static final String SESSION_MEDECIN         = "medecin";
+    
+    public static final String SESSION_PATIENT         = "patient";
+    
 }

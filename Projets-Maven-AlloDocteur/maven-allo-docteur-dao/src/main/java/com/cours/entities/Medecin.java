@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Medecin.findAll", query = "SELECT m FROM Medecin m"),
     @NamedQuery(name = "Medecin.findByIdMedecin", query = "SELECT m FROM Medecin m WHERE m.idMedecin = :idMedecin"),
-    @NamedQuery(name = "Medecin.findByIdUtilisateur", query = "SELECT m FROM Medecin m WHERE m.IdUtilisateur = :IdUtilisateur"),
+    @NamedQuery(name = "Medecin.findByIdUtilisateur", query = "SELECT m FROM Medecin m WHERE m.idUtilisateur = :idUtilisateur"),
     @NamedQuery(name = "Medecin.findByNumeroAccreditation", query = "SELECT m FROM Medecin m WHERE m.numeroAccreditation = :numeroAccreditation"),
     @NamedQuery(name = "Medecin.findByNumeroTelephone", query = "SELECT m FROM Medecin m WHERE m.numeroTelephone = :numeroTelephone"),
     @NamedQuery(name = "Medecin.findByVersion", query = "SELECT m FROM Medecin m WHERE m.version = :version")})
@@ -55,8 +55,8 @@ public class Medecin implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMedecin")
     private List<Creneau> creneauList;
     @JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
-    @ManyToOne(optional = false)
-    private Utilisateur idUtilisateur;
+    //@ManyToOne(optional = false)
+    private Integer idUtilisateur;
 
     public Medecin() {
     }
@@ -65,7 +65,7 @@ public class Medecin implements Serializable {
         this.idMedecin = idMedecin;
     }
 
-    public Medecin( Integer idMedecin, String numeroAccreditation, String numeroTelephone, Utilisateur idUtilisateur, List<Creneau> creneauList) {
+    public Medecin( Integer idMedecin, String numeroAccreditation, String numeroTelephone, Integer idUtilisateur, List<Creneau> creneauList) {
         this.idMedecin = idMedecin;
         this.numeroAccreditation = numeroAccreditation;
         this.numeroTelephone = numeroTelephone;
@@ -73,14 +73,14 @@ public class Medecin implements Serializable {
         this.creneauList = creneauList;
     }
     
-    public Medecin( String numeroAccreditation, String numeroTelephone, Utilisateur idUtilisateur, List<Creneau> creneauList ) {
+    public Medecin( String numeroAccreditation, String numeroTelephone, Integer idUtilisateur, List<Creneau> creneauList ) {
         this.numeroAccreditation = numeroAccreditation;
         this.numeroTelephone = numeroTelephone;
         this.idUtilisateur = idUtilisateur;
         this.creneauList = creneauList;
     }
     
-    public Medecin( String numeroAccreditation, String numeroTelephone, Utilisateur idUtilisateur) {
+    public Medecin( String numeroAccreditation, String numeroTelephone, Integer idUtilisateur) {
         this.numeroAccreditation = numeroAccreditation;
         this.numeroTelephone = numeroTelephone;
         this.idUtilisateur = idUtilisateur;
@@ -127,11 +127,11 @@ public class Medecin implements Serializable {
         this.creneauList = creneauList;
     }
 
-    public Utilisateur getIdUtilisateur() {
+    public Integer getIdUtilisateur() {
         return idUtilisateur;
     }
 
-    public void setIdUtilisateur(Utilisateur idUtilisateur) {
+    public void setIdUtilisateur(Integer idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 

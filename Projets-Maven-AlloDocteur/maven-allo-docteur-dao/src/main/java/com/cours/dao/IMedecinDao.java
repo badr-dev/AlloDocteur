@@ -18,15 +18,15 @@ public interface IMedecinDao {
     
     public Medecin findByIdMedecin( Integer idMedecin );
     
-    public Medecin findByIdUtilisateur( Integer IdUtilisateur );
+    public Medecin findByIdUtilisateur( Integer idUtilisateur );
     
     public Medecin findByNumeroAccreditation( String numeroAccreditation );
     
     public Medecin findByNumeroTelephone( String numeroTelephone );
     
-    public Medecin CreateMedecin( Medecin Medecin);
+    public Medecin CreateMedecin( Medecin medecin);
     
-    public Medecin UpdateMedecin( Medecin Medecin);
+    public Medecin UpdateMedecin( Medecin medecin);
     
-    public Boolean DeleteMedecin( Medecin Medecin);
+    public Boolean DeleteMedecin( Medecin medecin);
 }

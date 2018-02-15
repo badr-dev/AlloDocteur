@@ -8,16 +8,22 @@ package com.cours.servlet;
 import com.cours.entities.Medecin;
 import com.cours.entities.Patient;
 import com.cours.entities.Utilisateur;
+import com.cours.exception.CustomException;
 import com.cours.service.IServiceFacade;
+import com.cours.utils.Constants;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.logging.Log; 
+import javax.servlet.http.HttpSession;
+import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -31,12 +37,13 @@ public class LoginServlet extends HttpServlet {
     private static final Log log = LogFactory.getLog(LoginServlet.class);
     private IServiceFacade service = null;
 
-   @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
-        service = (IServiceFacade) context.getBean("serviceFacade");
-        log.debug("allAdresses: " + service.getAdresseDao().findAll());
+        this.service = (IServiceFacade) context.getBean("serviceFacade");
+        log.debug("allAdresses: " + this.service.getAdresseDao().findAll());
         this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
     }
 
@@ -44,43 +51,67 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+        this.service = (IServiceFacade) context.getBean("serviceFacade");
+
         Utilisateur utilisateur = null;
-        
-        String login    = request.getParameter("login").trim();
+
+        JSONObject json = new JSONObject();
+
+        String login = request.getParameter("login").trim();
         String password = request.getParameter("password").trim();
-        	
-        utilisateur  = service.getUtilisateurDao().findByIdentifiant(login);
-        
-        if ( utilisateur != null ) {
-        
+
+        utilisateur = this.service.getUtilisateurDao().findByIdentifiant(login);
+
+        if (utilisateur != null) {
+
             Patient patient = null;
             Medecin medecin = null;
-            
-            patient = service.getPatientDao().findByIdUtilisateur(utilisateur.getIdUtilisateur());
-            medecin = service.getMedecinDao().findByIdUtilisateur(utilisateur.getIdUtilisateur());
-            
-            if ( medecin != null ) {
-                log.debug("medecin : " + medecin);
-                
-                response.setContentType("application/json");
-                response.getWriter().write(medecin);
-                
-                this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
 
-            }
-            else if ( patient != null ) {
-                log.debug("patient : " + patient);
+            patient = this.service.getPatientDao().findByIdUtilisateur(utilisateur.getIdUtilisateur());
+            medecin = this.service.getMedecinDao().findByIdUtilisateur(utilisateur.getIdUtilisateur());
+
+            HttpSession session = request.getSession();
+            
+            session.setAttribute(Constants.SESSION_UTILISATEUR, utilisateur);
+            
+            if (medecin != null) {
                 
-                response.setContentType("application/json");
-                response.getWriter().write(patient);
+                try {
+                    json.put("result", 1);
+                    json.put("nextUrl", "AccueilMedecinServlet?utilisateurId=" + medecin.getIdUtilisateur());
+                } catch (JSONException jse) {
+                    throw new CustomException("Error medecin Json Object in :: LoginServlet", jse, CustomException.ERROR_LOGIN_SERVLET);
+                }
+                session.setAttribute(Constants.SESSION_MEDECIN, medecin);
                 
-                this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
+            } else if (patient != null) {
+
+                try {
+                    json.put("result", 2);
+                    json.put("nextUrl", "AccueilPatientServlet?utilisateurId=" + patient.getIdUtilisateur());
+                } catch (JSONException jse) {
+                    throw new CustomException("Error patient Json Object in :: LoginServlet", jse, CustomException.ERROR_LOGIN_SERVLET);
+                }
+                session.setAttribute(Constants.SESSION_PATIENT, patient);
+                return;
             }
-            else
-            {
-   
+            else {
+                session.setAttribute(Constants.SESSION_UTILISATEUR, null );
+                return;
+            }
+            
+        } else {
+
+            try {
+                json.put("result", -1);
+                json.put("message", "Login ou mots de passe incorrect");
+            } catch (JSONException jse) {
+                throw new CustomException("Error user not found in :: LoginServlet", jse, CustomException.ERROR_LOGIN_SERVLET);
             }
         }
-    }
 
+        response.setContentType("application/json");
+        response.getWriter().write(json.toString());
+    }
 }

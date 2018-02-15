@@ -25,7 +25,9 @@ public class CustomException extends RuntimeException {
     
     public static int ERROR_DAO_PATIENTS            = -47;
     
-    public static int ERROR_DAO_RENDEZVOUS            = -47;
+    public static int ERROR_DAO_RENDEZVOUS          = -48;
+    
+    public static int ERROR_LOGIN_SERVLET           = -49;
     
     private int code;
 

@@ -6,11 +6,12 @@
 package com.cours.dao.impl;
 
 import com.cours.dao.IMedecinDao;
-import com.cours.entities.Adresse;
 import com.cours.entities.Medecin;
 import com.cours.exception.CustomException;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
@@ -60,21 +61,27 @@ public class MedecinDao implements IMedecinDao {
     }
     
     @Override
-    public Medecin findByIdUtilisateur(Integer IdUtilisateur) {
+    public Medecin findByIdUtilisateur(Integer idUtilisateur) {
 
         String methodName = "MedecinDao :: findByIdUtilisateur";
         
         Medecin medecin = null;
         
+        TypedQuery<Medecin> query = this.em.createNamedQuery("Medecin.findByIdUtilisateur", Medecin.class );
+        
         try {
-            TypedQuery<Medecin> query = this.em.createNamedQuery("Medecin.findByIdUtilisateur", Medecin.class );
-            medecin = query.setParameter("IdUtilisateur", IdUtilisateur).getSingleResult();
-        } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
+            List results = query.setParameter("idUtilisateur", idUtilisateur).getResultList();
+            if (!results.isEmpty()) {
+                return medecin = (Medecin) results.get(0);
+            }
+        } catch (NoResultException nre) {
+            throw new CustomException(" ERROR NoResultException IN => " + methodName, nre, CustomException.ERROR_DAO_MEDECINS);
+        } catch (NonUniqueResultException nure) {
+            throw new CustomException(" ERROR NonUniqueResultException IN => " + methodName, nure, CustomException.ERROR_DAO_MEDECINS);
         }
         return medecin;
     }
-
+    
     @Override
     public Medecin findByNumeroAccreditation(String numeroAccreditation) {
         

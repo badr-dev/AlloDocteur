@@ -10,6 +10,8 @@ import com.cours.entities.Patient;
 import com.cours.exception.CustomException;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
@@ -25,19 +27,19 @@ public class PatientDao implements IPatientDao {
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public List<Patient> findAll() {
 
         String methodName = "PatientDao :: findAll";
-        
+
         List<Patient> ListePatient = null;
-        
+
         try {
-            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findAll", Patient.class );
+            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findAll", Patient.class);
             ListePatient = query.getResultList();
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return ListePatient;
     }
@@ -46,46 +48,53 @@ public class PatientDao implements IPatientDao {
     public Patient findByIdPatient(Integer idPatient) {
 
         String methodName = "PatientDao :: findByIdMedecin";
-        
+
         Patient patient = null;
-        
+
         try {
-            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByIdMedecin", Patient.class );
-            patient =  query.setParameter("idPatient", idPatient).getSingleResult();
+            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByIdMedecin", Patient.class);
+            patient = query.setParameter("idPatient", idPatient).getSingleResult();
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return patient;
     }
-    
+
     @Override
     public Patient findByIdUtilisateur(Integer idUtilisateur) {
 
         String methodName = "PatientDao :: findByidUtilisateur";
-        
+
         Patient patient = null;
-        
+
+        TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByIdUtilisateur", Patient.class);
+
         try {
-            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByidUtilisateur", Patient.class );
-            patient =  query.setParameter("idPatient", idUtilisateur).getSingleResult();
-        } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            List results = query.setParameter("idUtilisateur", idUtilisateur).getResultList();
+            if (!results.isEmpty()) {
+                return patient = (Patient) results.get(0);
+            }
+
+        } catch (NoResultException nre) {
+            throw new CustomException(" ERROR NoResultException IN => " + methodName, nre, CustomException.ERROR_DAO_PATIENTS);
+        } catch (NonUniqueResultException nure) {
+            throw new CustomException(" ERROR NonUniqueResultException IN => " + methodName, nure, CustomException.ERROR_DAO_PATIENTS);
         }
         return patient;
     }
 
     @Override
     public Patient findByNumeroSecuriteSociale(String numeroSecuriteSociale) {
-        
+
         String methodName = "PatientDao :: findByNumeroSecuriteSociale";
-        
+
         Patient patient = null;
-        
+
         try {
-            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByNumeroSecuriteSociale", Patient.class );
-            patient =  query.setParameter("numeroSecuriteSociale", numeroSecuriteSociale).getSingleResult();
+            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByNumeroSecuriteSociale", Patient.class);
+            patient = query.setParameter("numeroSecuriteSociale", numeroSecuriteSociale).getSingleResult();
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return patient;
     }
@@ -94,14 +103,14 @@ public class PatientDao implements IPatientDao {
     public Patient findByNumeroTelephone(String numeroTelephone) {
 
         String methodName = "PatientDao :: findByNumeroTelephone";
-        
+
         Patient patient = null;
-        
+
         try {
-            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByNumeroTelephone", Patient.class );
-            patient =  query.setParameter("numeroTelephone", numeroTelephone).getSingleResult();
+            TypedQuery<Patient> query = this.em.createNamedQuery("Patient.findByNumeroTelephone", Patient.class);
+            patient = query.setParameter("numeroTelephone", numeroTelephone).getSingleResult();
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return patient;
     }
@@ -110,11 +119,11 @@ public class PatientDao implements IPatientDao {
     public Patient createPatient(Patient patient) {
 
         String methodName = "PatientDao :: createPatient";
-        
+
         try {
             this.em.persist(patient);
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return patient;
     }
@@ -123,11 +132,11 @@ public class PatientDao implements IPatientDao {
     public Patient updatePatient(Patient patient) {
 
         String methodName = "PatientDao :: updatePatient";
-        
+
         try {
             this.em.merge(patient);
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return patient;
     }
@@ -136,13 +145,13 @@ public class PatientDao implements IPatientDao {
     public Boolean deletePatient(Patient patient) {
 
         String methodName = "Patient :: deletePatient";
-        
+
         try {
-            this.em.remove( this.em.merge(patient) );
+            this.em.remove(this.em.merge(patient));
         } catch (Exception e) {
-            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS );
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_PATIENTS);
         }
         return true;
     }
-    
+
 }

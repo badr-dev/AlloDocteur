@@ -15,11 +15,18 @@
             <groupId>com.cours</groupId>
             <artifactId>maven-allo-docteur-dao</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
          <dependency>
             <groupId>com.cours</groupId>
             <artifactId>maven-allo-docteur-service</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
