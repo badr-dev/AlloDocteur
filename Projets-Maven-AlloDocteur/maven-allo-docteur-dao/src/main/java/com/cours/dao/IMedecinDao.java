@@ -18,7 +18,7 @@ public interface IMedecinDao {
     
     public Medecin findByIdMedecin( Integer idMedecin );
     
-    public Medecin findByIdUtilisateur( Integer IdUtilisateur );
+    public Medecin findByIdUtilisateur( Integer idUtilisateur );
     
     public Medecin findByNumeroAccreditation( String numeroAccreditation );
     

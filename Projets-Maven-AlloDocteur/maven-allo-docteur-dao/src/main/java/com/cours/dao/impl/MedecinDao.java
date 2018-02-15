@@ -60,7 +60,7 @@ public class MedecinDao implements IMedecinDao {
     }
     
     @Override
-    public Medecin findByIdUtilisateur(Integer IdUtilisateur) {
+    public Medecin findByIdUtilisateur(Integer idUtilisateur) {
 
         String methodName = "MedecinDao :: findByIdUtilisateur";
         
@@ -68,7 +68,7 @@ public class MedecinDao implements IMedecinDao {
         
         try {
             TypedQuery<Medecin> query = this.em.createNamedQuery("Medecin.findByIdUtilisateur", Medecin.class );
-            medecin = query.setParameter("IdUtilisateur", IdUtilisateur).getSingleResult();
+            medecin = query.setParameter("idUtilisateur", idUtilisateur).getSingleResult();
         } catch (Exception e) {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_MEDECINS );
         }
