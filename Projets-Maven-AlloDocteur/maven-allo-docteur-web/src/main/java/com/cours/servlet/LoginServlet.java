@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
                 log.debug("medecin : " + medecin);
                 
                 response.setContentType("application/json");
-                response.getWriter().write(medecin);
+                response.getWriter().write(medecin.toString());
                 
                 this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
 
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
                 log.debug("patient : " + patient);
                 
                 response.setContentType("application/json");
-                response.getWriter().write(patient);
+                response.getWriter().write(patient.toString());
                 
                 this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
             }
