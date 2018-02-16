@@ -1,20 +1,18 @@
 <%-- 
-    Document   : medecin
-    Created on : Feb 15, 2018, 10:18:23 PM
+    Document   : patient
+    Created on : Feb 16, 2018, 10:50:59 AM
     Author     : badre
 --%>
 
-<%@page import="com.cours.entities.Utilisateur"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
-<html class="no-js" lang="">   
+<html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Accueil Medecin</title>
+    <title>Accueil Patient</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -28,19 +26,13 @@
     <link rel="stylesheet" href="styles/bootstrap.css"> 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/rwd.css">
+
     <!-- endbuild -->
     
     <!-- build:js scripts/vendor/modernizr.js -->
     <!-- endbuild -->
   </head>
   <body class="clearfix">
-    
-    <%-- Vérification de la présence d'un objet utilisateur en session --%>
-    <c:if test="${empty sessionScope.utilisateur}">
-        <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-        <p class="succes">Vous n êtes pas connecté(e)</p>
-    </c:if>
-    
     <!--[if IE]>
       <p class="browserupgrade">Vous utilisez un <strong>obsolète</strong> navigateur. Merci de se <a href="http://browsehappy.com/">mettre à jour</a> pour améliorer votre experience.</p>
     <![endif]-->
@@ -56,8 +48,8 @@
             <li><a href="allo-doctor-compte.html">Connexion</a></li>
           </ul>
           <ul class="nav">
-            <li><a href="patients.html">Patient</a></li>
-            <li><a class="active" href="medecin.html">Médecin</a></li>
+            <li><a class="active" href="patients.html">Patient</a></li>
+            <li><a href="medecin.html">Médecin</a></li>
             <li><a href="rendez-vous.html">Prendre rendez vous</a></li>
             <li><a href="modification-informations-medecin.html">Informations médecins</a></li>
             <li><a href="modification-informations-patient.html">Informations patient</a></li>
@@ -69,22 +61,21 @@
       </div>
 
       <div class="container-fluid clearfix">
-        <div class="container content-outer medecin-home">
+        <div class="container content-outer patient-home">
           <div class="content-container clearfix">
             <div class="content">
               <h1 class="site-title">
-                ACCUEIL DES MÉDECIN
+                ACCUEIL DES PATIENTS
               </h1>
               <div class="home-links">
-                <p>Bonjour Mr le docteur Jacques Dupont, votre chiffre d’affaire du mois est de XXXX euros.</p>
+                <p>Bonjour Mr Nicolas Care, votre prochain rendez-vous est pour le 25/10/2018 à 09h00
+avec le docteur Jacques Dupont dont le cabinet se situe au 5 rue du paradis, 53 000 Laval,
+Téléphone XX XX XX XX XX.</p>
                 <div class="links">
-                  <a href="./modification-informations-medecin.html">Modifier mes informations personnelles</a>
-                  <a href="./rendez-vous-journee.html">Voir les rendez-vous de la journée</a>
-                  <a href="./recherche-rendez-vous.html">Rechercher mes rendez-vous</a>
-                  <a href="./parrainer-medecin.html">Parrainer un médecin</a>
-                  <a href="#">Exporter mes futurs rendez-vous au format CSV</a>
-                  <a href="#">Exporter mes futurs rendez-vous au format XML</a>
-                  <a href="#">Exporter mes futurs rendez-vous au format Json</a>
+                  <a href="./modification-informations-patient.html">Modifier mes informations personnelles</a>
+                  <a href="./rendez-vous.html">Prendre un rendez-vous</a>
+                  <a href="./futurs-rendez-vous.html">Voir mes futur rendez-vous</a>
+                  <a href="#">Exporter mes futurs rendez-vous au format PDF</a>
                 </div>
               </div>
             </div>
@@ -102,8 +93,8 @@
     <!-- endbower -->
     <!-- endbuild -->
     
+    <script src="scripts/jquery.slicknav.js"></script> 
     <!-- build:js scripts/main.js -->
-    <script src="scripts/jquery.slicknav.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
   </body>
