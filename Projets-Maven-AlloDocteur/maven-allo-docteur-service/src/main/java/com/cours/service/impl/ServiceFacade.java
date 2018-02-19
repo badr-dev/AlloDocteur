@@ -69,4 +69,5 @@ public class ServiceFacade implements IServiceFacade {
     public IRendezVousDao getRendezVousDao() {
         return rendezVousDao;
     }
+    
 }

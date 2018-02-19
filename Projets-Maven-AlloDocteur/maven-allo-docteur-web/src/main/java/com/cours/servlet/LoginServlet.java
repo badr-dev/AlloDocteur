@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
             patient = this.service.getPatientDao().findByIdUtilisateur(utilisateur.getIdUtilisateur());
             medecin = this.service.getMedecinDao().findByIdUtilisateur(utilisateur.getIdUtilisateur());
 
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             
             session.setAttribute(Constants.SESSION_UTILISATEUR, utilisateur);
             
@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
                 
                 try {
                     json.put("result", 1);
-                    json.put("nextUrl", "AccueilMedecinServlet?utilisateurId=" + medecin.getIdUtilisateur());
+                    json.put("nextUrl", "AccueilMedecinServlet");
                 } catch (JSONException jse) {
                     throw new CustomException("Error medecin Json Object in :: LoginServlet", jse, CustomException.ERROR_LOGIN_SERVLET);
                 }
@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
 
                 try {
                     json.put("result", 2);
-                    json.put("nextUrl", "AccueilPatientServlet?utilisateurId=" + patient.getIdUtilisateur());
+                    json.put("nextUrl", "AccueilPatientServlet");
                 } catch (JSONException jse) {
                     throw new CustomException("Error patient Json Object in :: LoginServlet", jse, CustomException.ERROR_LOGIN_SERVLET);
                 }
@@ -97,6 +97,8 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
             else {
+                session.setAttribute(Constants.SESSION_PATIENT, null);
+                session.setAttribute(Constants.SESSION_MEDECIN, null);
                 session.setAttribute(Constants.SESSION_UTILISATEUR, null );
                 return;
             }

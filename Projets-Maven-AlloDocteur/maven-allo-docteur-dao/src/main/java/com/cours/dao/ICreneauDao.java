@@ -18,6 +18,8 @@ public interface ICreneauDao {
     
     public Creneau findByIdCreneau( Integer idCreneau );
     
+    public List<Creneau> findByIdMedecin( Integer idMedecin );
+    
     public List<Creneau> findByHeureDebut( Integer heureDebut );
     
     public List<Creneau> findByMinuteDebut( Integer minuteDebut );

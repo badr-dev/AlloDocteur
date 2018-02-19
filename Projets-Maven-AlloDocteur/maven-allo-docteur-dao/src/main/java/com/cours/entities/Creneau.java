@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Creneau.findAll", query = "SELECT c FROM Creneau c"),
     @NamedQuery(name = "Creneau.findByIdCreneau", query = "SELECT c FROM Creneau c WHERE c.idCreneau = :idCreneau"),
+    @NamedQuery(name = "Creneau.findByIdMedecin", query = "SELECT c FROM Creneau c WHERE c.idMedecin = :idMedecin"),
     @NamedQuery(name = "Creneau.findByHeureDebut", query = "SELECT c FROM Creneau c WHERE c.heureDebut = :heureDebut"),
     @NamedQuery(name = "Creneau.findByMinuteDebut", query = "SELECT c FROM Creneau c WHERE c.minuteDebut = :minuteDebut"),
     @NamedQuery(name = "Creneau.findByHeureFin", query = "SELECT c FROM Creneau c WHERE c.heureFin = :heureFin"),
@@ -58,8 +59,8 @@ public class Creneau implements Serializable {
     @Version
     private Integer version;
     @JoinColumn(name = "idMedecin", referencedColumnName = "idMedecin")
-    @ManyToOne(optional = false)
-    private Medecin idMedecin;
+    //@ManyToOne(optional = false)
+    private Integer idMedecin;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCreneau")
     private List<Rendezvous> rendezvousList;
 
@@ -70,7 +71,7 @@ public class Creneau implements Serializable {
         this.idCreneau = idCreneau;
     }
     
-    public Creneau( Integer idCreneau, Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Medecin idMedecin, List<Rendezvous> rendezvousList) {
+    public Creneau( Integer idCreneau, Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Integer idMedecin, List<Rendezvous> rendezvousList) {
         this.idCreneau = idCreneau;
         this.heureDebut = heureDebut;
         this.minuteDebut = minuteDebut;
@@ -80,7 +81,7 @@ public class Creneau implements Serializable {
         this.rendezvousList = rendezvousList;
     }
     
-    public Creneau( Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Medecin idMedecin, List<Rendezvous> rendezvousList) {
+    public Creneau( Integer heureDebut, Integer minuteDebut, Integer heureFin, Integer minuteFin, Boolean principale, Integer idMedecin, List<Rendezvous> rendezvousList) {
         this.heureDebut = heureDebut;
         this.minuteDebut = minuteDebut;
         this.heureFin = heureFin;
@@ -137,11 +138,11 @@ public class Creneau implements Serializable {
         this.version = version;
     }
 
-    public Medecin getIdMedecin() {
+    public Integer getIdMedecin() {
         return idMedecin;
     }
 
-    public void setIdMedecin(Medecin idMedecin) {
+    public void setIdMedecin(Integer idMedecin) {
         this.idMedecin = idMedecin;
     }
 

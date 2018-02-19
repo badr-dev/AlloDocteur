@@ -46,6 +46,18 @@ public class CreneauDao implements ICreneauDao {
             throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
         }
     }
+    
+    @Override
+    public List<Creneau> findByIdMedecin(Integer idMedecin) {
+
+        String methodName = "CreneauDao :: findByIdMedecin";
+        
+        try {
+            return this.em.createNamedQuery("Creneau.findByIdMedecin", Creneau.class ).setParameter("idMedecin", idMedecin).getResultList();
+        } catch (Exception e) {
+            throw new CustomException(" ERROR IN => " + methodName, e, CustomException.ERROR_DAO_CRENEAUX );
+        }
+    }
 
     @Override
     public List<Creneau> findByHeureDebut(Integer heureDebut) {
