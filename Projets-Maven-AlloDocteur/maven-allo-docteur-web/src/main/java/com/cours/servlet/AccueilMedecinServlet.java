@@ -58,26 +58,27 @@ public class AccueilMedecinServlet extends HttpServlet {
 
             List<Creneau> creneaux = medecin.getCreneauList();
 
-            String yoyo = "yoyo";
+            if (medecin != null) {
 
-//            if (medecin != null) {
-//
 //                List<Creneau> creneaux = service.getCreneauDao().findByIdMedecin(medecin.getIdUtilisateur());
 //
 //                String yoyo = "yoyo";
 //                
-//                //        List<Rendezvous> rdv = null;
-//                //        
-//                //        if (creneaux.size() > 0) {
-//                //            for( int i=0; i < creneaux.size(); i++) {
-//                //                
-//                //                
-//                //            }
-//                //        }
-//                
-//                
-//                this.getServletContext().getRequestDispatcher("/pages/medecin/medecin.jsp").forward(request, response);
-//            }
+//                        List<Rendezvous> rdv = null;
+//                        
+//                        if (creneaux.size() > 0) {
+//                            for( int i=0; i < creneaux.size(); i++) {
+//                                
+//                                
+//                            }
+//                        }
+                
+                
+                this.getServletContext().getRequestDispatcher("/pages/medecin/medecin.jsp").forward(request, response);
+            
+            } else {
+                this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
+            }
         } else {
             this.getServletContext().getRequestDispatcher("/pages/login/login.jsp").forward(request, response);
         }
